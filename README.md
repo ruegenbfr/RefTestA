@@ -1,3 +1,3 @@
 # RefTestA
 
-Lorem ipsum
+Lorem ipsum ...
