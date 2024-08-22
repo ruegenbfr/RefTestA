@@ -45,4 +45,28 @@ jobs:
     - name: Dependent 3 is running
       run: |
         echo "Completed job 4"
+
+  seqJob:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup P1
+        run: echo "Preparation P1"
+      - name: SetupP2
+        run: |
+          echo "Prep P2"
+          echo "blabla" > "test.txt"
+      - name: Dep1
+        run: |
+           echo "Dep 1 fails"
+           exit 1
+      - name: Dep2
+        if: steps.Setup2.outcome=='success'
+        run: |
+           echo "Dep 2 succeeds"
+      - name: Dep3
+        if: steps.Setup2.outcome=='success'
+        run: |
+           head -n 1 "test.txt"
+           echo "Dep3 succeeded"
         
