@@ -1,0 +1,48 @@
+name: Experiment
+on: [workflow_dispatch]
+
+jobs:
+  job1:
+    name: Job 1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: setup
+      run: echo "Test" > "test.txt"
+    - name: Sleep and Run
+      run: |
+        echo "Sleeping for 10"
+        sleep 10
+
+  job2:
+    name: Job 2
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dependant is Running
+      run: |
+        echo "Completed job 2, but triggering failure"
+        exit 1
+
+  job3:
+    name: Job 3
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Dependent 2 is running
+      run: |
+        echo "Completed job 3"
+
+  job4:
+    name: Job 4
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: tail -n 1 "test.txt"
+    - name: Dependent 3 is running
+      run: |
+        echo "Completed job 4"
+        
