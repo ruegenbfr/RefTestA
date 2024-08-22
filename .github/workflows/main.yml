@@ -53,6 +53,7 @@ jobs:
       - name: Setup P1
         run: echo "Preparation P1"
       - name: SetupP2
+        id: setup
         run: |
           echo "Prep P2"
           echo "blabla" > "test.txt"
@@ -61,11 +62,11 @@ jobs:
            echo "Dep 1 fails"
            exit 1
       - name: Dep2
-        if: steps.Setup2.outcome=='success'
+        if: steps.setup.outcome=='success'
         run: |
            echo "Dep 2 succeeds"
       - name: Dep3
-        if: steps.Setup2.outcome=='success'
+        if: steps.setup.outcome=='success'
         run: |
            head -n 1 "test.txt"
            echo "Dep3 succeeded"
