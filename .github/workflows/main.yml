@@ -61,6 +61,7 @@ jobs:
         run: |
            echo "Dep 1 fails"
            exit 1
+        continue-on-error: true
       - name: Dep2
         if: steps.setup.outcome=='success'
         run: |
