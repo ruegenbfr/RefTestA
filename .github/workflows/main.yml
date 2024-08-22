@@ -62,7 +62,7 @@ jobs:
            echo "Dep 1 fails"
            exit 1
       - name: Dep2
-        if: ${{ always() }}
+        if: ${{ steps.setup.outcome=='success' }}
         # if: steps.setup.outcome=='success'
         run: |
            echo "Dep 2 succeeds"
