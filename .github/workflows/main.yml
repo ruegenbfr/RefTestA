@@ -51,7 +51,9 @@ jobs:
 
     steps:
       - name: Setup P1
-        run: echo "Preparation P1"
+        run: |
+          echo "Preparation P1"
+          exit 1
       - name: SetupP2
         id: setup
         run: |
