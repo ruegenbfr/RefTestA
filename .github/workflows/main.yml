@@ -13,15 +13,12 @@ jobs:
       - id: ci
         run: echo "npm ci"
   
-      - name: check build
-        run: |
+      - run: |
            echo "Dep 1 fails"
            exit 1
-      - name: check test
-        if: ${{ (success() || failure()) && steps.setup.outcome=='success' }}
+      - if: ${{ (success() || failure()) && steps.ci.outcome=='success' }}
         run: |
            echo "test"
-      - name: check lint
-        if: ${{ (success() || failure()) && steps.setup.outcome=='success' }}
+      - if: ${{ (success() || failure()) && steps.ci.outcome=='success' }}
         run: echo "lint succeeded"
         
