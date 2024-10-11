@@ -15,7 +15,7 @@ jobs:
   
       - run: |
            echo "Dep 1 fails"
-           exit 1
+           exit 0
       - if: ${{ (success() || failure()) && steps.ci.outcome=='success' }}
         run: |
            echo "test"
