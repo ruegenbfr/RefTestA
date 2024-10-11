@@ -17,7 +17,8 @@ jobs:
            echo "Dep 1 fails"
       - if: ${{ (success() || failure()) && steps.ci.outcome=='success' }}
         run: |
-           echo "test"
+           echo "run_id: ${{ github.run_id}}"
+           echo "run_number: ${{ github.run_number}}"
       - if: ${{ (success() || failure()) && steps.ci.outcome=='success' }}
         run: echo "lint succeeded"
       - if: ${{ (success() || failure()) }}
