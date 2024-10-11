@@ -21,4 +21,5 @@ jobs:
            echo "test"
       - if: ${{ (success() || failure()) && steps.ci.outcome=='success' }}
         run: echo "lint succeeded"
+      - run: echo "lksldkd" > "test${{ github.job }}.txt"
         
